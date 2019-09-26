@@ -1,0 +1,105 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Sticky Section</title>
+  <meta name="description" content="Multicolumn blog">
+  <meta name="ClarkMitchell" content="Foobar">
+  <script src="./node_modules/markdown-it/dist/markdown-it.min.js"></script>
+  <script src="./node_modules/markdown-it-container/dist/markdown-it-container.min.js"></script>
+
+  <style>
+    div {
+      width: 60vw;
+      padding: 2rem;
+    }
+
+    .container {
+      margin: 0 auto;
+      max-width: 960px;
+      padding-right: 5vw;
+      padding-left: 5vw;
+    }
+
+    .sticky-section {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .sticky {
+      position: sticky;
+      top: 0;
+    }
+  </style>
+  
+</head>
+
+<body>
+
+  <div id="app"></div>
+
+  <script>
+    var md = window.markdownit();
+
+const markdown = `
+:::: sticky-section
+::: sticky
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porta massa ipsum. Curabitur molestie mauris interdum erat suscipit condimentum. Nunc vel placerat nibh, nec gravida odio. Ut laoreet, eros vel pulvinar pretium, elit purus fringilla metus, id ullamcorper nisl sem a lacus. Nulla viverra eleifend diam et rutrum. Vivamus convallis feugiat purus non vestibulum. Suspendisse tempus semper lorem, quis dictum lectus sodales ut. Maecenas ex lectus, blandit eget efficitur iaculis, aliquam a mi. Quisque tristique malesuada tellus. Nunc eget ligula condimentum, ullamcorper sapien et, pulvinar nisi. Morbi aliquet non urna vitae aliquet. {.sticky}
+:::
+
+Aenean risus est, porttitor a est ac, congue pellentesque magna. Aenean maximus quam sed iaculis blandit. Morbi eleifend nibh vel finibus faucibus. Mauris a tincidunt dolor. Praesent id ex non leo malesuada eleifend. Suspendisse et pellentesque quam. Sed tincidunt velit in leo placerat, vitae interdum leo viverra. Nam ac interdum nunc. Fusce consectetur felis a lobortis pharetra. Nam gravida porttitor sapien sit amet dictum. Maecenas vulputate et elit a hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+Curabitur nec lectus eget arcu consequat suscipit. Maecenas ultrices, ligula sed sagittis blandit, eros metus rhoncus risus, et porttitor sapien magna nec velit. Integer cursus dui eget urna mattis, vel pulvinar libero varius. Integer imperdiet fringilla viverra. Integer et feugiat dolor. Vestibulum nec ultrices felis. Nam nibh mi, vulputate vel est non, posuere auctor tellus. Etiam ac risus et quam auctor elementum.
+
+Quisque urna dolor, rhoncus sed malesuada at, lacinia sit amet sapien. Cras leo nibh, ornare quis auctor ut, elementum vel turpis. Vivamus efficitur sodales lectus, fermentum blandit massa faucibus vitae. Nullam ut quam augue. Nullam ac erat in dolor tristique pharetra molestie eu mi. Praesent efficitur pharetra nisl, et mollis tellus faucibus sit amet. Mauris nec aliquet est, efficitur interdum mi.
+
+Vestibulum scelerisque urna nisi, ac commodo orci vulputate a. Suspendisse quis feugiat turpis, sit amet dapibus risus. Quisque et purus nisl. Suspendisse at euismod diam. Aenean tincidunt gravida ante, sit amet mollis dui luctus imperdiet. Nunc suscipit vel tortor nec varius. Sed consequat finibus risus congue tristique.
+
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porta massa ipsum. Curabitur molestie mauris interdum erat suscipit condimentum. Nunc vel placerat nibh, nec gravida odio. Ut laoreet, eros vel pulvinar pretium, elit purus fringilla metus, id ullamcorper nisl sem a lacus. Nulla viverra eleifend diam et rutrum. Vivamus convallis feugiat purus non vestibulum. Suspendisse tempus semper lorem, quis dictum lectus sodales ut. Maecenas ex lectus, blandit eget efficitur iaculis, aliquam a mi. Quisque tristique malesuada tellus. Nunc eget ligula condimentum, ullamcorper sapien et, pulvinar nisi. Morbi aliquet non urna vitae aliquet.
+
+Aenean risus est, porttitor a est ac, congue pellentesque magna. Aenean maximus quam sed iaculis blandit. Morbi eleifend nibh vel finibus faucibus. Mauris a tincidunt dolor. Praesent id ex non leo malesuada eleifend. Suspendisse et pellentesque quam. Sed tincidunt velit in leo placerat, vitae interdum leo viverra. Nam ac interdum nunc. Fusce consectetur felis a lobortis pharetra. Nam gravida porttitor sapien sit amet dictum. Maecenas vulputate et elit a hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+Curabitur nec lectus eget arcu consequat suscipit. Maecenas ultrices, ligula sed sagittis blandit, eros metus rhoncus risus, et porttitor sapien magna nec velit. Integer cursus dui eget urna mattis, vel pulvinar libero varius. Integer imperdiet fringilla viverra. Integer et feugiat dolor. Vestibulum nec ultrices felis. Nam nibh mi, vulputate vel est non, posuere auctor tellus. Etiam ac risus et quam auctor elementum.
+
+Quisque urna dolor, rhoncus sed malesuada at, lacinia sit amet sapien. Cras leo nibh, ornare quis auctor ut, elementum vel turpis. Vivamus efficitur sodales lectus, fermentum blandit massa faucibus vitae. Nullam ut quam augue. Nullam ac erat in dolor tristique pharetra molestie eu mi. Praesent efficitur pharetra nisl, et mollis tellus faucibus sit amet. Mauris nec aliquet est, efficitur interdum mi.
+
+Vestibulum scelerisque urna nisi, ac commodo orci vulputate a. Suspendisse quis feugiat turpis, sit amet dapibus risus. Quisque et purus nisl. Suspendisse at euismod diam. Aenean tincidunt gravida ante, sit amet mollis dui luctus imperdiet. Nunc suscipit vel tortor nec varius. Sed consequat finibus risus congue tristique.
+::::
+`
+    function extractColumn(arr, column) {
+        return arr.map(x => x[column])
+    }
+
+    var tokens = md.parse(markdown);
+
+    var stickyTokens = tokens.filter(function(token) {
+        return token.type == "code_block";
+    });
+    var sticky = md.render(extractColumn(stickyTokens, 'content').join('\n'));
+    
+    var unStickyTokens = tokens.filter(function(token) {
+        return token.type == "inline";
+    });
+    var unSticky = md.render(extractColumn(unStickyTokens, 'content').slice(1).join('\n'));
+
+    var html = `
+        <div class="sticky-section">
+            <div>
+                ${unSticky}
+            </div>
+            <div class="sticky">
+                ${sticky}
+            </div>
+        </div>
+    `;
+//const html = md.render(markdown);
+
+var app = document.getElementById('app');
+
+app.insertAdjacentHTML('afterbegin', html);
+
+  </script>
+</body>
+</html>
